@@ -1,0 +1,178 @@
+div.back{
+	text-align:center;
+	margin-top:1em;
+}
+
+
+
+/*index.html*/
+
+
+div.logo{
+height: 200px;
+		padding-top: 2.5em;
+
+
+}
+
+#header{
+
+	background-color: #444;
+	height: 300px;
+		padding-top: 2.5em;
+
+}
+
+#logo{
+
+	margin-left: auto;
+    margin-right: auto;
+    display:block;
+
+
+}
+
+#footer{
+background-color: #B79E26;
+height: 30px;
+padding-top: 13px;
+	margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.bullet{
+	color:white;
+}
+
+a.index:link{
+color:white;
+ font-family: "Roboto", sans-serif;
+font-weight: bolder;
+font-size: 1em;
+margin-right:0.5em;
+margin-left:0.5em;
+text-decoration: none;
+
+}
+a.index:visited{
+	color:white;
+ font-family: "Roboto", sans-serif;
+font-weight: bolder;
+font-size: 1em;
+margin-right:0.5em;
+margin-left:0.5em;
+text-decoration: none;
+}
+
+a.index:hover{
+		color:#444;
+
+}
+
+
+
+/*login.html*/
+
+.login-page {
+  width: 360px;
+  padding: 7% 0 0;
+  margin: auto;
+}
+.form {
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  max-width: 360px;
+  padding: 45px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+.form input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+.form button {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #B79E26;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+.form button:hover,.form button:active,.form button:focus {
+  background: #444;
+}
+
+
+body {
+  /*background: -webkit-linear-gradient(right, #76b852, #8DC26F);
+  background: -moz-linear-gradient(right, #76b852, #8DC26F);
+  background: -o-linear-gradient(right, #76b852, #8DC26F);
+  background: linear-gradient(to left, #76b852, #8DC26F);*/
+  font-family: "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;      
+}
+
+
+a.back:link{
+color:#444;
+ font-family: "Roboto", sans-serif;
+font-weight: bolder;
+font-size: 1em;
+text-decoration: none;
+
+}
+
+a.back:visited{
+		color:#444;
+ font-family: "Roboto", sans-serif;
+font-weight: bolder;
+font-size: 1em;
+
+text-decoration: none;
+}
+
+
+/*impressum.html*/
+
+.impressum{
+text-align:center;
+
+}
+
+h2{
+	color:#B79E26;
+	margin-bottom:0.5em;
+
+}
+
+
+/*katalog.php*/
+.katalog{
+
+		margin-left: auto;
+    margin-right: auto;
+	margin-top: 3em;
+	background-color:#B79E26;
+}
+
+.bild{
+	width:50px;
+	
+}
+
