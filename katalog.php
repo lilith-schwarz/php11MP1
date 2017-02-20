@@ -15,7 +15,7 @@
 <div id="footer">
 <span class="footer"> <a href="katalog.php" class="index">Produkte</a></span>
 <span class="bullet"> &bull;</span>
-<span class="footer"> <a href="login.php" class="index">LogIn </a></span>
+<span class="footer"> <a href="login.php" class="index">Admin-Login</a></span>
 <span class="bullet"> &bull;</span>
 <span class="footer"><a href="impressum.html" class="index">Impressum</a></span>
 </div>
@@ -52,6 +52,7 @@ if($verbindung)
 			echo "<td> {$produkte ['name']}</td>";
 			echo "<td> {$produkte ['preis']}";
 			echo "<td> {$produkte ['beschreibung']}";
+			echo "<td class='leer'></td>";
 			echo"</tr>";
 
 

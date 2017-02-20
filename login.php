@@ -17,9 +17,9 @@
     <form class="login-form">
       <input type="text" placeholder="Benutzername"/>
       <input type="password" placeholder="Passwort"/>
-      <button>login</button>
+      <button>admin-login</button>
       <div class="back">
-      <a href="index.html" class="back"> Zurück</a>
+      <a href="index.html" class="back"> Kein Admin? Zurück</a>
       </div>
     </form>
   </div>

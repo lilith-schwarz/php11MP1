@@ -167,12 +167,35 @@ h2{
 
 		margin-left: auto;
     margin-right: auto;
-	margin-top: 3em;
-	background-color:#B79E26;
+	background-color:#FFF;
+  border-collapse: collapse;
+    width: 100%;
 }
 
 .bild{
-	width:50px;
+	width:200px;
+  padding:10px;
+  border-radius: 50%;
 	
 }
+
+td, th.katalog{
+   border-bottom: 1px solid #FFF;
+   padding: 8px;
+    text-align: left;
+  height: 70px;
+
+}
+
+td.leer{
+  width:100px;
+}
+
+
+tr:nth-child(even) {
+  background-color:#B79E26;
+}
+
+/*tr:hover {background-color: #FFF}*/
+
 
