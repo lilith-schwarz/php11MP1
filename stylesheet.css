@@ -150,7 +150,7 @@ text-decoration: none;
 
 /*impressum.html*/
 
-.impressum{
+.text{
 text-align:center;
 
 }
@@ -197,5 +197,19 @@ tr:nth-child(even) {
 }
 
 /*tr:hover {background-color: #FFF}*/
+
+
+
+/*admin.php*/
+
+#headeradmin{
+
+  background-color: #FFF;
+  height: 300px;
+    padding-top: 2.5em;
+
+}
+
+
 
 

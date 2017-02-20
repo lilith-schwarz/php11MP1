@@ -9,8 +9,8 @@
 	<link href="stylesheet.css" rel="stylesheet">
 </head>
 <body>
-<div id="header">
-<a href="index.html"><img src="images/logo_loca_mole_weiss.png" id="logo"/></a>
+<div id="headeradmin">
+<img src="images/logo_loca_mole.png" id="logo"/>
 </div>
 <div id="footer">
 <span class="footer"> <a href="katalog.php" class="index">Produkte</a></span>
@@ -21,7 +21,54 @@
 </div>
 
 
+
 <?php
+  $server="localhost";
+  $benutzer="root";
+  $passwort="";
+  $datenbank="locamole";
+
+$verbindung= @mysqli_connect($server, $benutzer, $passwort);
+
+
+if($verbindung){
+
+  mysqli_select_db($verbindung, $datenbank);
+  if (mysqli_error($verbindung))
+  {
+    echo "Fehler: ".mysqli_error($verbindung);
+  }else
+  {
+    $sql="SELECT * FROM login";
+    $abfrage=mysqli_query($verbindung, $sql);
+    $login=mysqli_fetch_assoc($abfrage);
+
+    
+
+
+      if ($_POST["psw"]==$login['password'] AND $_POST["user"]==$login['user'])
+      {
+
+      }
+      else{
+
+
+
+			 echo "<script language=\"JavaScript\">
+			<!--
+			alert(\"Bitte überprüfen sie ihre Daten!\");
+			//-->
+			location.href = 'login.php';
+			</script>
+			";
+
+			//header('Location: login.php');
+
+
+		}
+	}
+}
+
 $server="localhost";
 $benutzer="root";
 $passwort="";
