@@ -36,10 +36,9 @@ div.bild_start img{
 	line-height:20px;
 	text-align:center
 }
-#description{
-		
-	
-	
+#bild_start{
+	width:100%;
+ 	height:50px;
 }	
 
 div.logo{
