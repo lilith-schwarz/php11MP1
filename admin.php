@@ -20,9 +20,53 @@
 <span class="footer"><a href="impressum.html" class="index">Impressum</a></span>
 </div>
 
+<form class="dazu" method="post" action="admin.php">
+      
 
+       <div class="formdazu">
+       <input type="text" name="name" placeholder="Produktname"/>
+      <input type="text" name="preis" placeholder="Preis"/>
+      <input type="text" name="bild" placeholder="Bild-URL"/>
+      <input type="text" name="menge" placeholder="Menge"/>
+      <input type="text" name="zutaten" placeholder="Zutaten"/>
+      <input type="text" name="beschreibung" placeholder="Beschreibung"/>
+      <button type="submit" id="dazu">Hinzuf&uuml;gen</button>
+      </div>
+
+
+
+
+    </form>
 
 <?php
+ function login($psw, $user){
+    	 if ($psw==$login['password'] AND $user==$login['user'])
+      {
+      	
+      }
+      else{
+
+
+
+			 echo "<script language=\"JavaScript\">
+			<!--
+			alert(\"Bitte überprüfen sie ihre Daten!\");
+			//-->
+			location.href = 'login.php';
+			</script>
+			";
+
+
+
+    }}
+
+
+
+
+
+
+
+
   $server="localhost";
   $benutzer="root";
   $passwort="";
@@ -44,30 +88,36 @@ if($verbindung){
     $login=mysqli_fetch_assoc($abfrage);
 
     
+    $passwort=$_POST["psw"];
+    $user=$_POST["user"];
+
+        login($passwort, $user);
 
 
-      if ($_POST["psw"]==$login['password'] AND $_POST["user"]==$login['user'])
-      {
+   
 
-      }
-      else{
-
-
-
-			 echo "<script language=\"JavaScript\">
-			<!--
-			alert(\"Bitte überprüfen sie ihre Daten!\");
-			//-->
-			location.href = 'login.php';
-			</script>
-			";
-
+     
 			//header('Location: login.php');
 
 
-		}
+		
 	}
 }
+
+if(isset($_POST["name"]) && isset($_POST["preis"]) && isset($_POST["beschreibung"]) && isset($_POST["bild"]) && isset($_POST["zutaten"]) && isset($_POST["menge"])){
+
+		$sql="INSERT INTO produkte ('name', 'preis', 'beschreibung', 'bild', 'zutaten', 'menge') VALUES ('name', 'preis', 'beschreibung', 'bild', 'zutaten', 'menge')";
+		mysqli_query($verbindung, $sql);
+
+
+
+}
+
+
+
+
+
+
 
 $server="localhost";
 $benutzer="root";
@@ -120,6 +170,9 @@ else
 mysqli_close($verbindung);
 
 ?>
+
+
+
 
 
 </body>

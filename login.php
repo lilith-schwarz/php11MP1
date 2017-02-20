@@ -17,10 +17,8 @@
     <form class="login-form" method="post" action="admin.php">
       <input type="text" name="user" placeholder="Benutzername"/>
       <input type="password" name="psw" placeholder="Passwort"/>
-      <button type="submit">admin-login</button>
+      <button type="submit" id="login">admin-login</button>
       <div class="back">
-
-
 
       <a href="index.html" class="back"> Kein Admin? Zurück</a>
       </div>
