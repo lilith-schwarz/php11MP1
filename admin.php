@@ -32,148 +32,72 @@
       <input type="text" name="beschreibung" placeholder="Beschreibung"/>
       <button type="submit" id="dazu">Hinzuf&uuml;gen</button>
       </div>
-
-
-
-
     </form>
 
 <?php
- function login($psw, $user){
-    	 if ($psw==$login['password'] AND $user==$login['user'])
-      {
-      	
-      }
-      else{
 
+$verbindung="";
 
+function getDb($db_verbindung){
+	if($db_verbindung==""){
+		try{
+			$a= @mysqli_connect("localhost", "root", "");
+			mysqli_select_db($a, "locamole");
+			return $a;
 
-			 echo "<script language=\"JavaScript\">
-			<!--
-			alert(\"Bitte überprüfen sie ihre Daten!\");
-			//-->
-			location.href = 'login.php';
-			</script>
-			";
-
-
-
-    }}
-
-
-
-
-
-
-
-
-  $server="localhost";
-  $benutzer="root";
-  $passwort="";
-  $datenbank="locamole";
-
-$verbindung= @mysqli_connect($server, $benutzer, $passwort);
-
-
-if($verbindung){
-
-  mysqli_select_db($verbindung, $datenbank);
-  if (mysqli_error($verbindung))
-  {
-    echo "Fehler: ".mysqli_error($verbindung);
-  }else
-  {
-    $sql="SELECT * FROM login";
-    $abfrage=mysqli_query($verbindung, $sql);
-    $login=mysqli_fetch_assoc($abfrage);
-
-    
-    $passwort=$_POST["psw"];
-    $user=$_POST["user"];
-
-        login($passwort, $user);
-
-
-   
-
-     
-			//header('Location: login.php');
-
-
-		
+		}catch(mysqli_error $e){
+			echo "Fehler: ".$e($a);
+		}
+	}else{
+		return $db_verbindung;
 	}
 }
+
+$query="SELECT * FROM login";
+$verbindung = getDb($verbindung);
+$abfrage=mysqli_query($verbindung, $query);
+$login=mysqli_fetch_assoc($abfrage);
+
+if ($_POST['psw']!=$login['password'] && $_POST['user']!=$login['user']) {
+	echo "<script language=\"JavaScript\">
+	<!--
+	alert(\"Bitte überprüfen sie ihre Daten!\");
+	//-->
+	location.href = 'login.php';
+	</script>";
+	// else $_SESSION["loginok"] = true;
+}
+
 
 if(isset($_POST["name"]) && isset($_POST["preis"]) && isset($_POST["beschreibung"]) && isset($_POST["bild"]) && isset($_POST["zutaten"]) && isset($_POST["menge"])){
 
 		$sql="INSERT INTO produkte ('name', 'preis', 'beschreibung', 'bild', 'zutaten', 'menge') VALUES ('name', 'preis', 'beschreibung', 'bild', 'zutaten', 'menge')";
 		mysqli_query($verbindung, $sql);
-
-
-
 }
 
 
+$sql="SELECT * FROM produkte ORDER BY id";
+$abfrage=mysqli_query($verbindung, $sql);
 
-
-
-
-
-$server="localhost";
-$benutzer="root";
-$passwort="";
-$datenbank="locamole";
-
-$verbindung= @mysqli_connect($server, $benutzer, $passwort);
-
-if($verbindung)
-{
-	mysqli_select_db($verbindung, $datenbank);
-	if (mysqli_error($verbindung))
-	{
-		echo "Fehler: ".mysqli_error($verbindung);
-	}else
-	{
+echo'<table class="katalog">';
 		
-		$sql="SELECT * FROM produkte ORDER BY id";
-		$abfrage=mysqli_query($verbindung, $sql);
+while ($produkte = mysqli_fetch_assoc($abfrage)){
 
-
-
-		echo'<table class="katalog">';
-		while ($produkte = mysqli_fetch_assoc($abfrage)){
-
-			echo"<tr>";
-			echo "<td> <img src='{$produkte ['bild']}' class='bild'/></td>";
-			echo "<td> {$produkte ['id']}</td>";
-			echo "<td> {$produkte ['name']}</td>";
-			echo "<td> {$produkte ['preis']}";
-			echo "<td> {$produkte ['beschreibung']}";
-			echo "<td class='leer'></td>";
-			echo"</tr>";
-
-
-		}
-				echo'</table>';
-				mysqli_free_result($abfrage);
-
-		
-	
-	
-	}
-}
-else
-{
-	echo "Verbindungsfehler: ".mysqli_connect_error($verbindung);
+	echo"<tr>";
+	echo "<td> <img src='{$produkte ['bild']}' class='bild'/></td>";
+	echo "<td> {$produkte ['id']}</td>";
+	echo "<td> {$produkte ['name']}</td>";
+	echo "<td> {$produkte ['preis']}";
+	echo "<td> {$produkte ['beschreibung']}";
+	echo "<td class='leer'></td>";
+	echo"</tr>";
 }
 
+echo'</table>';
+
+mysqli_free_result($abfrage);
 mysqli_close($verbindung);
 
 ?>
-
-
-
-
-
 </body>
 </html>
