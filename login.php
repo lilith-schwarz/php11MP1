@@ -22,6 +22,18 @@
 
       <a href="index.html" class="back"> Kein Admin? Zurück</a>
       </div>
+      <?php
+session_start();
+
+  if (isset($_SESSION['visited'])) {
+    echo "<script language=\"JavaScript\">
+    
+    location.href = 'admin.php';
+    </script>";
+    }
+
+?>
+
 
 
 
