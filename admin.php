@@ -4,20 +4,19 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <!-- äüöß-->
 
-
 	<title></title>
 	<link href="stylesheet.css" rel="stylesheet">
 </head>
 <body>
-<div id="headeradmin">
-<img src="images/logo_loca_mole.png" id="logo"/>
-</div>
-<div id="footer">
-<span class="footer"> <a href="katalog.php" class="index">Produkte</a></span>
-<span class="bullet"> &bull;</span>
-<span class="footer"> <a href="login.php" class="index">Admin-Login</a></span>
-<span class="bullet"> &bull;</span>
-<span class="footer"><a href="impressum.html" class="index">Impressum</a></span>
+	<div id="headeradmin">
+		<img src="images/logo_loca_mole.png" id="logo"/>
+	</div>
+	<div id="footer">
+		<span class="footer"> <a href="katalog.php" class="index">Produkte</a></span>
+		<span class="bullet"> &bull;</span>
+		<span class="footer"> <a href="login.php" class="index">Admin-Login</a></span>
+		<span class="bullet"> &bull;</span>
+		<span class="footer"><a href="impressum.html" class="index">Impressum</a></span>
 </div>
 
 <?php
@@ -25,33 +24,51 @@ session_start();
 $verbindung="";
 $verbindung = getDb($verbindung);
 
-echo '<form class="dazu" method="post" action="admin.php">';
-      
-echo '<div class="formdazu">';
-echo '<input type="text" name="name" placeholder="Produktname"/>';
-echo '<input type="text" name="preis" placeholder="Preis"/>';
-echo '<input type="text" name="bild" placeholder="Bild-URL"/>';
-echo '<input type="text" name="menge" placeholder="Menge"/>';
-echo '<input type="text" name="zutaten" placeholder="Zutaten"/>';
-echo '<input type="text" name="beschreibung" placeholder="Beschreibung"/>';
-echo '<button type="submit" name="dazu" id="dazu">Hinzuf&uuml;gen</button>';
-echo '</div>';
-echo '</form>';
+$button="Hinzuf&uuml;gen";
+$varname="";
+$varpreis="";
+$varbild="";
+$varmenge="";
+$varzutaten="";
+$varbeschreibung="";
+$varid="";
 
 
 if (isset($_POST['loschen'])){
 	$sql="DELETE FROM produkte WHERE id = '{$_POST['loschen']}'";
 	mysqli_query($verbindung, $sql);
-	//header("Refresh:0");
 
 }else if (isset($_POST['bearbeiten'])){
-	$sql="SELECT name FROM produkte WHERE id='{$_POST['bearbeiten']}'";
+	$button="&Auml;ndern";
+	$sql="SELECT * FROM produkte WHERE id='{$_POST['bearbeiten']}'";
 	$abfrage=mysqli_query($verbindung, $sql);
 
-	$produktname = mysqli_fetch_assoc($abfrage);
-	$_POST["name"]= $produktname['name'];
-
+	$infos = mysqli_fetch_assoc($abfrage);
+	$varname= $infos['name'];
+	$varpreis= $infos['preis'];
+	$varbild= $infos['bild'];
+	$varmenge= $infos['menge'];
+	$varzutaten= $infos['zutaten'];
+	$varbeschreibung= $infos['beschreibung'];
+	$varid = $infos['id'];
 }
+
+
+echo '<form class="dazu" method="post" action="admin.php">';
+      
+echo '<div class="formdazu">';
+echo '<input type="text" name="name" value="'.$varname.'" placeholder="Produktname"/>';
+echo '<input type="text" name="preis" value="'.$varpreis.'" placeholder="Preis"/>';
+echo '<input type="text" name="bild" value="'.$varbild.'" placeholder="Bild-URL"/>';
+echo '<input type="text" name="menge" value="'.$varmenge.'" placeholder="Menge"/>';
+echo '<input type="text" name="zutaten" value="'.$varzutaten.'" placeholder="Zutaten"/>';
+echo '<input type="text" name="beschreibung" value="'.$varbeschreibung.'" placeholder="Beschreibung"/>';
+echo '<button type="submit" name="'.$button.'"" value="'.$varid.'" id="dazu">'.$button.'</button>';
+echo '</div>';
+echo '</form>';
+
+
+
 
 if (!isset($_SESSION['visited'])) {
    //echo "Du hast diese Seite noch nicht besucht";
@@ -78,19 +95,33 @@ if (!isset($_SESSION['visited'])) {
 
 //wenn alles ausgefüllt ist, füge es in die Datenbank ein
 
+if(!(isset($_POST["Ändern"]))){
+	if(!(empty($_POST["name"])) && !(empty($_POST["preis"])) && !(empty($_POST["beschreibung"])) && !(empty($_POST["bild"])) && !(empty($_POST["zutaten"])) && !(empty($_POST["menge"]))){
 
+			$sql="INSERT INTO produkte (name, preis, beschreibung, bild, zutaten, menge) VALUES ('{$_POST["name"]}', '{$_POST["preis"]}', '{$_POST["beschreibung"]}', '{$_POST["bild"]}', '{$_POST["zutaten"]}', '{$_POST["menge"]}')";
+			mysqli_query($verbindung, $sql);
 
-if(!(empty($_POST["name"])) && !(empty($_POST["preis"])) && !(empty($_POST["beschreibung"])) && !(empty($_POST["bild"])) && !(empty($_POST["zutaten"])) && !(empty($_POST["menge"]))){
+	}else if (isset($_POST['Hinzufügen'])){
+	echo "<script language=\"JavaScript\">
+			<!--
+			alert(\"Bitte alle Felder ausfüllen!\");
+			//-->
+			</script>";
+	} }
+if(isset($_POST["Ändern"])){		
+	if(!(empty($_POST["name"])) && !(empty($_POST["preis"])) && !(empty($_POST["beschreibung"])) && !(empty($_POST["bild"])) && !(empty($_POST["zutaten"])) && !(empty($_POST["menge"]))){
 
-		$sql="INSERT INTO produkte (name, preis, beschreibung, bild, zutaten, menge) VALUES ('{$_POST["name"]}', '{$_POST["preis"]}', '{$_POST["beschreibung"]}', '{$_POST["bild"]}', '{$_POST["zutaten"]}', '{$_POST["menge"]}')";
-		mysqli_query($verbindung, $sql);
+			$sql="UPDATE produkte SET name='{$_POST["name"]}', preis='{$_POST["preis"]}', beschreibung='{$_POST["beschreibung"]}', bild='{$_POST["bild"]}', zutaten='{$_POST["zutaten"]}', menge='{$_POST["menge"]}' WHERE id='{$_POST["Ändern"]}'";
+			mysqli_query($verbindung, $sql);
+		}
 
-}else if (isset($_POST['dazu'])){
-echo "<script language=\"JavaScript\">
-		<!--
-		alert(\"Bitte alle Felder ausfüllen!\");
-		//-->
-		</script>";
+		else if (isset($_POST['Ändern'])){
+			echo "<script language=\"JavaScript\">
+					<!--
+					alert(\"Bitte alle Felder ausfüllen!\");
+					//-->
+					</script>";
+	}
 }
 
 
