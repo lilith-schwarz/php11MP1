@@ -10,7 +10,7 @@
 <body>
 <!-- Header -->
 	<div id="headeradmin">
-		<img src="images/logo_loca_mole.png" id="logo"/>
+<a href="index.html"><img src="images/logo_loca_mole.png" id="logo"/></a>
 	</div>
 	<div id="footer">
 		<span class="footer"> <a href="katalog.php" class="index">Produkte</a></span>

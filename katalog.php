@@ -20,60 +20,38 @@
 <span class="footer"><a href="impressum.html" class="index">Impressum</a></span>
 </div>
 
-
 <?php
-$server="localhost";
-$benutzer="root";
-$passwort="";
-$datenbank="locamole";
+$verbindung="";
 
-$verbindung= @mysqli_connect($server, $benutzer, $passwort);
+try{				//versuche eine Verbindung herzustellen
+	$verbindung= @mysqli_connect("localhost", "root", "");	
+	mysqli_select_db($verbindung, "locamole");
 
-if($verbindung)
-{
-	mysqli_select_db($verbindung, $datenbank);
-	if (mysqli_error($verbindung))
-	{
-		echo "Fehler: ".mysqli_error($verbindung);
-	}else
-	{
-		
-		$sql="SELECT * FROM produkte ORDER BY id";
-		$abfrage=mysqli_query($verbindung, $sql);
-
-
-
-		echo'<table class="katalog">';
-		while ($produkte = mysqli_fetch_assoc($abfrage)){
-
-			echo"<tr>";
-			echo "<td> <img src='{$produkte ['bild']}' class='bild'/></td>";
-			echo "<td> {$produkte ['id']}</td>";
-			echo "<td> {$produkte ['name']}</td>";
-			echo "<td> {$produkte ['preis']}";
-			echo "<td> {$produkte ['beschreibung']}";
-			echo "<td class='leer'></td>";
-			echo"</tr>";
-
-
-		}
-				echo'</table>';
-				mysqli_free_result($abfrage);
-
-		
-	
-	
-	}
-}
-else
-{
-	echo "Verbindungsfehler: ".mysqli_connect_error($verbindung);
+}catch(mysqli_error $e){	//Fehlerhandling
+	echo "Fehler: ".$e($a);
 }
 
+$sql="SELECT * FROM produkte ORDER BY id";
+$abfrage=mysqli_query($verbindung, $sql);
+
+echo'<table class="katalog">';
+
+while ($produkte = mysqli_fetch_assoc($abfrage)){
+	echo"<tr>";
+	echo "<td> <img src='{$produkte ['bild']}' class='bild'/></td>";
+	echo "<td> {$produkte ['id']}</td>";
+	echo "<td> {$produkte ['name']}</td>";
+	echo "<td> {$produkte ['preis']}";
+	echo "<td> {$produkte ['beschreibung']}";
+	echo "<td class='leer'></td>";
+	echo"</tr>";
+}
+
+echo'</table>';
+
+mysqli_free_result($abfrage);
 mysqli_close($verbindung);
 
 ?>
-
-
 </body>
 </html>

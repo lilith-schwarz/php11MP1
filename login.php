@@ -19,27 +19,18 @@
       <input type="password" name="psw" placeholder="Passwort"/>
       <button type="submit" id="login">admin-login</button>
       <div class="back">
-
       <a href="index.html" class="back"> Kein Admin? Zurück</a>
       </div>
-      <?php
+<?php
 session_start();
 
-  if (isset($_SESSION['visited'])) {
-    echo "<script language=\"JavaScript\">
-    
+if (isset($_SESSION['visited'])) {  //wenn schon eingeloggt, dann direkt weiter zur admin.php
+    echo "<script language=\"JavaScript\">   
     location.href = 'admin.php';
     </script>";
-    }
+}
 
 ?>
-
-
-
-
-
-
-
     </form>
   </div>
 </div>
