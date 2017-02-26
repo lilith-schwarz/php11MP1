@@ -39,10 +39,10 @@ echo'<table class="katalog">';
 while ($produkte = mysqli_fetch_assoc($abfrage)){
 	echo"<tr>";
 	echo "<td> <img src='{$produkte ['bild']}' class='bild'/></td>";
-	echo "<td> {$produkte ['id']}</td>";
 	echo "<td> {$produkte ['name']}</td>";
-	echo "<td> {$produkte ['preis']}";
-	echo "<td> {$produkte ['beschreibung']}";
+	echo "<td> {$produkte ['preis']} &euro; </td>";
+	echo "<td> {$produkte ['beschreibung']} </td>";
+	echo "<td> {$produkte ['zutaten']}</td>";
 	echo "<td class='leer'></td>";
 	echo"</tr>";
 }

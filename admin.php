@@ -213,12 +213,12 @@ function show_itemlist(){	//Zeigt alle Items der DB an
 		echo "<td> <img src='{$produkte ['bild']}' class='bild'/></td>";
 		echo "<td> {$produkte ['id']}</td>";
 		echo "<td> {$produkte ['name']}</td>";
-		echo "<td> {$produkte ['preis']}";
-		echo "<td> {$produkte ['beschreibung']}";
-		echo "<td class='leer'><form class='dazu' method='post' action='admin.php'>";
-		echo "<button type='submit' name='bearbeiten' value='{$produkte['id']}' id='dazu'>Bearbeiten</button>";
-	    echo "<button type='submit' name='loschen' value='{$produkte['id']}' id='dazu'>L&ouml;schen</button>";
-	    echo "</form></td>";
+		echo "<td> {$produkte ['preis']} &euro;</td>";
+		echo "<td> {$produkte ['beschreibung']} </td>";
+		echo "<td class='leer'><form class='dazu' method='post' action='admin.php'> </td>";
+		echo "<td> <button type='submit' name='bearbeiten' value='{$produkte['id']}' id='dazu'>Bearbeiten</button></td>";
+	    echo "<td> <button type='submit' name='loschen' value='{$produkte['id']}' id='dazu'>L&ouml;schen</button></td>";
+	    echo "<td> </form></td>";
 		echo "</tr>";
 	}
 	echo'</table>';
