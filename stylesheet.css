@@ -3,21 +3,21 @@ div.back{
 	margin-top:1em;
 }
 
-
+footer{
+  background-color: #B79E26;
+  height: 30px;
+  padding-top: 13px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
 
 /*index.html*/
-
-/*lisa*/
-h2{
-	color:#B79E26;
-	margin-bottom:0.5em;
-
-}
 
 /*startseite bild*/
 div.bild_start{
  	width:100%;
- 	height:500px;
+ 	height:300px;
  	overflow:hidden;
 }	
 
@@ -27,24 +27,24 @@ div.bild_start img{
  	margin-left:-550px;
 }
 
-.bild_start span {
-	background-color:silver;
-	background-color:hsla(0, 0%, 100%, 0.5);
-	position:absolute;
-	bottom:0;
-	width:100%;
-	line-height:20px;
-	text-align:center
-}
-#bild_start{
-	width:100%;
- 	height:50px;
-}	
 
 div.logo{
-height: 200px;
-		padding-top: 2.5em;
+  height: 200px;
+	padding-top: 2.5em;
 
+
+}
+
+#intro{
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  width:100%;
+  padding-top: 1em;
+  font-weight: bold;
+  font-size: 1.1em;
+  color:#444;
+  margin-bottom: 1em;
 
 }
 
@@ -52,26 +52,26 @@ height: 200px;
 
 	background-color: #444;
 	height: 300px;
-		padding-top: 2.5em;
+	padding-top: 2.5em;
 
 }
 
 #logo{
 
 	margin-left: auto;
-    margin-right: auto;
-    display:block;
+  margin-right: auto;
+  display:block;
 
 
 }
 
-#footer{
-background-color: #B79E26;
-height: 30px;
-padding-top: 13px;
-	margin-left: auto;
-    margin-right: auto;
-    text-align: center;
+#menue{
+  background-color: #B79E26;
+  height: 30px;
+  padding-top: 13px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
 
 .bullet{
@@ -79,23 +79,23 @@ padding-top: 13px;
 }
 
 a.index:link{
-color:white;
- font-family: "Roboto", sans-serif;
-font-weight: bolder;
-font-size: 1em;
-margin-right:0.5em;
-margin-left:0.5em;
-text-decoration: none;
+  color:white;
+  font-family: "Roboto", sans-serif;
+  font-weight: bolder;
+  font-size: 1em;
+  margin-right:0.5em;
+  margin-left:0.5em;
+  text-decoration: none;
 
 }
 a.index:visited{
-	color:white;
- font-family: "Roboto", sans-serif;
-font-weight: bolder;
-font-size: 1em;
-margin-right:0.5em;
-margin-left:0.5em;
-text-decoration: none;
+  color:white;
+  font-family: "Roboto", sans-serif;
+  font-weight: bolder;
+  font-size: 1em;
+  margin-right:0.5em;
+  margin-left:0.5em;
+  text-decoration: none;
 }
 
 a.index:hover{
@@ -152,10 +152,6 @@ a.index:hover{
 
 
 body {
-  /*background: -webkit-linear-gradient(right, #76b852, #8DC26F);
-  background: -moz-linear-gradient(right, #76b852, #8DC26F);
-  background: -o-linear-gradient(right, #76b852, #8DC26F);
-  background: linear-gradient(to left, #76b852, #8DC26F);*/
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;      
@@ -194,6 +190,12 @@ h2{
 
 }
 
+.impressum{
+  text-align: center;
+  position: relative;
+
+}
+
 
 /*katalog.php*/
 .katalog{
@@ -206,22 +208,22 @@ h2{
 }
 
 .bild{
-	width:200px;
+    width:90%;
   padding:10px;
   border-radius: 50%;
-	
+
 }
 
 td, th.katalog{
-   border-bottom: 1px solid #FFF;
-   padding: 8px;
-    text-align: left;
+  border-bottom: 1px solid #FFF;
+  padding: 8px;
+  text-align: left;
   height: 70px;
 
 }
 
 td.leer{
-  width:100px;
+  width:19%;
 }
 
 
@@ -229,7 +231,30 @@ tr:nth-child(even) {
   background-color:#B79E26;
 }
 
-/*tr:hover {background-color: #FFF}*/
+#tp{
+  width: 7%;
+}
+
+#th2{
+      color:#000;
+
+}
+#tb{
+  width:25%;
+  font-style: italic;
+}
+
+#tbild{
+  width:15%;
+}
+
+#tz{
+  width:20%;
+}
+
+#tm{
+  width:8%;
+}
 
 
 
@@ -251,22 +276,57 @@ padding:30px;
 
 }
 
-#dazu {
+.button {
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
   background: #B79E26;
   width: 50%;
-  border: 0;
-  padding: 15px;
+   border-width:1px;  
+    border-style:solid;  
+    padding: 15px;
   color: #FFFFFF;
   font-size: 14px;
   -webkit-transition: all 0.3 ease;
   transition: all 0.3 ease;
   cursor: pointer;
 }
-#dazu:hover,#dazu:active, #dazu:focus {
+
+.button:hover,.button:active, .button:focus {
   background: #444;
 }
+
+#ed{
+  width:100%;
+  margin-bottom:0.3em;
+}
+
+#del{
+  width:100%;
+
+}
+
+#del:hover{
+  background: #5c1a21;
+}
+
+#logout{
+  border:none;
+  outline:none;
+  background:none;
+  cursor:pointer;
+  color:#FFF;
+  padding:0;
+  text-decoration:none;
+  font-family:inherit;
+  font-size:inherit;
+  font-weight: bolder;
+
+}
+#logout:hover,#logout:active, #logout:focus {
+    color:#444;
+
+}
+
 
 
