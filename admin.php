@@ -267,26 +267,30 @@ function searchAndShow_itemlist(){
 	}
 
 	$abfrage=mysqli_query($verbindung, $sql);
+	if	(mysqli_num_rows($abfrage)>0){
 
-	echo'<table class="katalog">';
+		echo'<table class="katalog">';	
+		while ($produkte = mysqli_fetch_assoc($abfrage)){
 
-	while ($produkte = mysqli_fetch_assoc($abfrage)){
+			echo"<tr>";
+			echo "<td id='tbild'> <img src='{$produkte ['bild']}' class='bild'/></td>";
+			echo "<td><h2 id='th2'> {$produkte ['name']}</h2></td>";
+			echo "<td id='tp'> {$produkte ['preis']} &euro; </td>";
+			echo "<td id='tm'> {$produkte ['menge']}</td>";
+			echo "<td id='tb'> {$produkte ['beschreibung']} </td>";
+			echo "<td id='tz'><strong>Zutaten: </strong> {$produkte ['zutaten']}</td>";
+			echo "<td class='leer'><form class='dazu' method='post' action='admin.php'>";
+			echo "<button type='submit' name='bearbeiten' value='{$produkte['id']}' class='button' id='ed'>Bearbeiten</button><br/>";
+		    echo "<button type='submit' name='loschen' value='{$produkte['id']}' onclick=\"return confirm('Wirklich löschen?')\" class='button' id='del'>L&ouml;schen</button></form></td>";
+			echo "</tr>";
+		}
 
-		echo"<tr>";
-		echo "<td id='tbild'> <img src='{$produkte ['bild']}' class='bild'/></td>";
-		echo "<td><h2 id='th2'> {$produkte ['name']}</h2></td>";
-		echo "<td id='tp'> {$produkte ['preis']} &euro; </td>";
-		echo "<td id='tm'> {$produkte ['menge']}</td>";
-		echo "<td id='tb'> {$produkte ['beschreibung']} </td>";
-		echo "<td id='tz'><strong>Zutaten: </strong> {$produkte ['zutaten']}</td>";
-		echo "<td class='leer'><form class='dazu' method='post' action='admin.php'>";
-		echo "<button type='submit' name='bearbeiten' value='{$produkte['id']}' class='button' id='ed'>Bearbeiten</button><br/>";
-	    echo "<button type='submit' name='loschen' value='{$produkte['id']}' onclick=\"return confirm('Wirklich löschen?')\" class='button' id='del'>L&ouml;schen</button></form></td>";
-		echo "</tr>";
+		echo'</table>';
+		mysqli_free_result($abfrage);
+		
+	}else{
+		echo "<h2>Die Suche hat keine Treffer ergeben</h2>";
 	}
-
-	echo'</table>';
-	mysqli_free_result($abfrage);
 }
 
 
