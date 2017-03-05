@@ -49,7 +49,7 @@ if(isset($_POST['searchButton'])) {
 function show_itemlist(){	//Zeigt alle Items der DB an
 	global $verbindung;
 
-	$sql="SELECT * FROM produkte ORDER BY id";
+	$sql="SELECT * FROM produkte ORDER BY name";
 	$abfrage=mysqli_query($verbindung, $sql);
 
 	echo'<table class="katalog">';
@@ -90,6 +90,7 @@ function searchAndShow_itemlist(){
 
 		}
 	}
+	$sql.=" ORDER BY name";
 	$abfrage=mysqli_query($verbindung, $sql);
 
 	if	(mysqli_num_rows($abfrage)>0){

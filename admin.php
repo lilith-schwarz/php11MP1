@@ -174,6 +174,14 @@ function login(){
 	mysqli_free_result($abfrage);
 }
 
+function psw_hash($Input) {
+  $Input=iconv('UTF-8','UTF-16LE',$Input);	 //konvertivert das psw von UTF8 zu UTF16
+  $MD4Hash=bin2hex(mhash(MHASH_MD4,$Input)); //Verschlüsselt mit MD4 hash
+  $upperHash=strtoupper($MD4Hash);	//alles in Großbuchstaben
+
+  return($upperHash);
+}
+
 function add_item(){	//Hinzufügen von DB-Einträgen
 	global $verbindung;
 
@@ -214,7 +222,7 @@ function edit_item(){	//Bearbeiten von DB-Einträgen
 function show_itemlist(){	//Zeigt alle Items der DB an
 	global $verbindung;
 
-	$sql="SELECT * FROM produkte ORDER BY id";
+	$sql="SELECT * FROM produkte ORDER BY name";
 	$abfrage=mysqli_query($verbindung, $sql);
 
 	echo'<table class="katalog">';
@@ -238,14 +246,6 @@ function show_itemlist(){	//Zeigt alle Items der DB an
 	mysqli_free_result($abfrage);
 }
 
-function psw_hash($Input) {
-  $Input=iconv('UTF-8','UTF-16LE',$Input);	 //konvertivert das psw von UTF8 zu UTF16
-  $MD4Hash=bin2hex(mhash(MHASH_MD4,$Input)); //Verschlüsselt mit MD4 hash
-  $upperHash=strtoupper($MD4Hash);	//alles in Großbuchstaben
-
-  return($upperHash);
-}
-
 function searchAndShow_itemlist(){
 	global $verbindung;
 
@@ -257,7 +257,7 @@ function searchAndShow_itemlist(){
 
 	for ($i=0; $i < $wordCount; $i++) { 			
 
-		if($i==0){		//Wenn es der 1. Suchbegriff ist
+		if($i==0){		//Wenn es der 1. Suchbegriff ist --- REGEX----
 			$sql .= "name LIKE '%".$insertArray[$i]."%' OR zutaten LIKE '%".$insertArray[$i]."%'";	
 
 		}else{			//Für alle weiteren muss ein OR davor...
@@ -265,7 +265,7 @@ function searchAndShow_itemlist(){
 
 		}
 	}
-
+	$sql.=" ORDER BY name";
 	$abfrage=mysqli_query($verbindung, $sql);
 	if	(mysqli_num_rows($abfrage)>0){
 
